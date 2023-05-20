@@ -12,6 +12,9 @@ public class Status {
     int forca;
     int defesa;
     int moedas;
+    boolean vivo = true;
+    boolean critico = false;
+    String condicao = "Normal";
     
     public void Initialize(String nome, int vida, int mana, int ataque, int dadoAtaque, int forca, int defesa, int moedas) {
         this.nome = nome;
@@ -24,6 +27,9 @@ public class Status {
         this.forca = forca;
         this.defesa = defesa;
         this.moedas = moedas;
+        this.vivo = true;
+        this.critico = false;
+        this.condicao = "Normal";
     }
         
         

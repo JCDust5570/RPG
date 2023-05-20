@@ -25,15 +25,56 @@ public class Jogador extends Status {
     }
 
     public Integer AtaqueFurtivo(int defesaInimigo){
-        int ataqueFurtivo = this.forca;
+        // Ataque Furtivo tem chance de crítico
+        int ataqueFurtivo = 0;
+        this.mana -= 2;
+        ataqueFurtivo = this.forca;
         Random random = new Random();
         int golpe = random.nextInt(this.dadoAtaque);
+        // Chance de Acerto (+ dano)
         if(golpe <= defesaInimigo){
             ataqueFurtivo = 0;
         }else{
             ataqueFurtivo += golpe;
         }
+        // Chance de Crítico
+        int critico = random.nextInt(10);
+        if(critico >= 2){
+            this.critico = true;
+            ataqueFurtivo *= 2;
+        }
+
         return ataqueFurtivo;
+    }
+
+    public Integer Ataque(int defesaInimigo){
+        // Ataque normal (n gasta mana)
+        int golpe = 0;
+        Random random = new Random();
+        golpe = random.nextInt(this.dadoAtaque);
+        if(golpe <= defesaInimigo){
+            golpe = 0;
+        }else{
+            golpe += this.forca;
+        }
+        return golpe;
+    }
+
+    public Integer AtaquePoderoso(int defesaInimigo){
+        // Ataque Poderoso diminui a defesa do inimigo
+        int ataquePoderoso = 0;
+        this.mana -= 5;
+        ataquePoderoso = this.forca;
+        Random random = new Random();
+        int golpe = random.nextInt(this.dadoAtaque);
+        // Chance de Acerto (+ dano)
+        if(golpe < defesaInimigo){
+            ataquePoderoso = 0;
+        }else{
+            ataquePoderoso += golpe;
+            defesaInimigo -= 2;
+        }
+        return ataquePoderoso;
     }
 
     
