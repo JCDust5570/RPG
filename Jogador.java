@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class Jogador extends Status {
 
@@ -12,17 +13,30 @@ public class Jogador extends Status {
     }
 
     public void iniciar(String nome){
-        Initialize(nome, 20, 10, 10, 10, 0);
+        Initialize(nome, 20, 10, 1, 10, 5, 10, 0);
         System.out.println("\t\tJogador criado com sucesso!\n\n");
         System.out.println("Nome: " + nome);
         System.out.println("Vida: [" + vida + "/" + vidaMax + "]");
         System.out.println("Mana: [" + mana + "/" + manaMax + "]");
+        System.out.println("Ataque: " + ataque + "d" + dadoAtaque);
         System.out.println("Força: " + forca);
         System.out.println("Defesa: " + defesa);
         System.out.println("Moedas: " + moedas);
     }
 
-    
+    public Integer AtaqueFurtivo(int defesaInimigo){
+        int ataqueFurtivo = this.forca;
+        Random random = new Random();
+        int golpe = random.nextInt(this.dadoAtaque);
+        if(golpe <= defesaInimigo){
+            ataqueFurtivo = 0;
+        }else{
+            ataqueFurtivo += golpe;
+        }
+        return ataqueFurtivo;
+    }
 
     
 }
+
+
