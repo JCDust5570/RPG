@@ -34,6 +34,12 @@ public class Jogador extends Status {
             dano += this.forca;
             slime.vida -= dano - slime.defesa;
             System.out.println("Você causou " + (dano - slime.defesa) + " de dano!");
+            if(slime.estaVivo()){
+                System.out.println("O slime tem " + slime.vida + " de vida!");
+            }else{
+                System.out.println("O slime morreu!");
+                slime.vivo = false;
+            }
         }else{
             System.out.println("Você não causou dano!");
         }

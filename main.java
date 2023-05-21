@@ -16,9 +16,15 @@ class main{
         boolean sair = false;
         while(player.estaVivo()){
             Slime slime = new Slime();
-            slime.Iniciar();            
-            while(slime.estaVivo() && player.estaVivo()){
-                System.out.println("Você encontrou um slime!");
+            slime.Iniciar(); 
+            System.out.println("");
+
+            System.out.println("Você encontrou um slime!");
+            slime.meuStatus();
+            System.out.println("");
+
+            while(slime.estaVivo() || player.estaVivo()){
+                
                 menu(player, slime, sair);
                 if(player.vida <= 0){
                     System.out.println("Você morreu!");
@@ -29,10 +35,18 @@ class main{
                     player.moedas += slime.moedas;
                     System.out.println("Você tem " + player.moedas + " moedas!");
                 }
+                
             }
-            System.out.println("Você morreu! ;-;");
-            System.out.println("Obrigado por jogar! <3 \\(^o^)/");
+
+            if(player.vida > 0){
+                System.out.println("Você morreu! ;-;");
+                System.out.println("Obrigado por jogar! <3 \\(^o^)/");
+            }
+            System.out.println("Você encontrou um slime!");
+            slime.meuStatus();
+            System.out.println("");
         }
+
     }
 
     private static void menu(Jogador player, Slime slime, boolean sair){
