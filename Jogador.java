@@ -24,59 +24,20 @@ public class Jogador extends Status {
         System.out.println("Moedas: " + moedas);
     }
 
-    public Integer AtaqueFurtivo(int defesaInimigo){
-        // Ataque Furtivo tem chance de crítico
-        int ataqueFurtivo = 0;
-        this.mana -= 2;
-        ataqueFurtivo = this.forca;
-        Random random = new Random();
-        int golpe = random.nextInt(this.dadoAtaque);
-        // Chance de Acerto (+ dano)
-        if(golpe <= defesaInimigo){
-            ataqueFurtivo = 0;
+    public void Ataque(Slime slime){
+        Random rand = new Random();
+        int dano = 0;
+        for(int i = 0; i < this.ataque; i++){
+            dano += rand.nextInt(this.dadoAtaque);
+        }
+        if(dano > slime.defesa){
+            dano += this.forca;
+            slime.vida -= dano - slime.defesa;
+            System.out.println("Você causou " + (dano - slime.defesa) + " de dano!");
         }else{
-            ataqueFurtivo += golpe;
+            System.out.println("Você não causou dano!");
         }
-        // Chance de Crítico
-        int critico = random.nextInt(10);
-        if(critico >= 2){
-            this.critico = true;
-            ataqueFurtivo *= 2;
-        }
-
-        return ataqueFurtivo;
     }
-
-    public Integer Ataque(int defesaInimigo){
-        // Ataque normal (n gasta mana)
-        int golpe = 0;
-        Random random = new Random();
-        golpe = random.nextInt(this.dadoAtaque);
-        if(golpe <= defesaInimigo){
-            golpe = 0;
-        }else{
-            golpe += this.forca;
-        }
-        return golpe;
-    }
-
-    public Integer AtaquePoderoso(int defesaInimigo){
-        // Ataque Poderoso diminui a defesa do inimigo
-        int ataquePoderoso = 0;
-        this.mana -= 5;
-        ataquePoderoso = this.forca;
-        Random random = new Random();
-        int golpe = random.nextInt(this.dadoAtaque);
-        // Chance de Acerto (+ dano)
-        if(golpe < defesaInimigo){
-            ataquePoderoso = 0;
-        }else{
-            ataquePoderoso += golpe;
-            defesaInimigo -= 2;
-        }
-        return ataquePoderoso;
-    }
-
     
 }
 
