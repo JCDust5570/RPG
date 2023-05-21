@@ -1,24 +1,16 @@
 import java.util.Scanner;
 
-interface I_Jogador{
-    public String Nome();
-    public void iniciar(String nome);
-    public Integer AtaqueFurtivo(int defesaInimigo);
-    public Integer Ataque(int defesaInimigo);
-}
-
 class main{
     public static void main(String[] args) {    
         Jogador player = new Jogador();
         String nome = player.Nome();
         player.iniciar(nome);
+        Slime slime = new Slime();
+        slime.Iniciar(); 
+        System.out.println("");
 
         boolean sair = false;
         while(player.estaVivo()){
-            Slime slime = new Slime();
-            slime.Iniciar(); 
-            System.out.println("");
-
             System.out.println("Você encontrou um slime!");
             slime.meuStatus();
             System.out.println("");
@@ -28,15 +20,20 @@ class main{
                 menu(player, slime, sair);
                 if(player.vida <= 0){
                     System.out.println("Você morreu!");
-                    sair = true;
+                    player.vivo = false;
                 }else{
                     System.out.println("Você derrotou o slime!");
+                    slime.vivo = false;
                     System.out.println("Você ganhou " + slime.moedas + " moedas!");
                     player.moedas += slime.moedas;
                     System.out.println("Você tem " + player.moedas + " moedas!");
                 }
                 
             }
+            slime = null;
+            slime = new Slime();
+            slime.Iniciar(); 
+            System.out.println("");
 
             if(player.vida > 0){
                 System.out.println("Você morreu! ;-;");
