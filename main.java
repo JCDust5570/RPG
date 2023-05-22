@@ -8,8 +8,9 @@ class Main{
         System.out.println(jogador.status.nome);
         
         while(jogador.status.vivo){
-            Monstro monstro;
-            monstro = createMonstro(jogador);
+            Monstro monstro = createMonstro(jogador);
+            System.out.println("Você encontrou um " + monstro.status.nome + "!");
+            System.out.println("Prepare-se para a batalha!\n");
             while(monstro.status.vivo || jogador.status.vivo){
                 Menu(jogador, monstro);
                 if(jogador.status.vivo == false || monstro.status.vivo == false){
@@ -26,7 +27,7 @@ class Main{
                 System.out.println("Parabéns você derrotou o monstro!");
                 System.out.println("Você ganhou " + monstro.status.exp + " de experiência!");
                 jogador.status.exp += monstro.status.exp;
-                System.out.println("Você também ganhou " + monstro.status.moedas + " moedas!");
+                System.out.println("Você também ganhou " + monstro.status.moedas + " moedas!\n");
                 jogador.status.moedas += monstro.status.moedas;
                 jogador.evoluir(jogador);
             }
@@ -50,8 +51,10 @@ class Main{
                 break;
             case 2:
                 System.out.println("Você curou 5 pontos de vida");
-                jogador.vida += 5;
-                break;
+                jogador.status.vida += 5;
+                if(jogador.status.vida > jogador.status.vidaMax){
+                    jogador.status.vida = jogador.status.vidaMax;
+                }
             case 3:
                 Jogador.statusDoJogador(jogador);
                 break;
@@ -63,27 +66,23 @@ class Main{
 
     private static Monstro createMonstro(Jogador jogador){
         //Criar monstros de forma aleatoria baseado no nível do jogador
-        Monstro monstro;
-        int lvl = jogador.nivel;
-        int nivel = new Random().nextInt(2);
-        for(int i = nivel; i <= lvl; i --){
-            nivel -= 1;
+        Random random = new Random();
+        int nivel = jogador.status.nivel;
+        int monstroAleatorio = random.nextInt(5);
+        while (nivel == 0 || monstroAleatorio > nivel){
+            monstroAleatorio = random.nextInt(5);
         }
 
-        switch (nivel){
+        switch(monstroAleatorio){
             case 1:
-                monstro = Monstro.createSlime();
-                System.out.println(monstro.status.nome);
-            return monstro;
+                Monstro monstro1 = Monstro.createSlime();
+                return monstro1;
             case 2:
-                monstro = Monstro.createGoblin();
-                System.out.print(monstro.status.nome);
-            return monstro;
-
+                Monstro monstro2 = Monstro.createGoblin();
+                return monstro2;
             default:
-                monstro = Monstro.createSlime();
-                System.out.println(monstro.status.nome);
-            return monstro;
+                Monstro monstro3 = Monstro.createSlime();
+                return monstro3;
         }
     }
 

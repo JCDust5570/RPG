@@ -20,18 +20,21 @@ public class Jogador extends Status {
 
     public static Jogador createJogador() {
         String nome = Nome();
-        Status jogadorStatus = Status.createStatus(nome, 10, 0, 1, 40, 0, 0, 1, 1);
+        Status jogadorStatus = Status.createStatus(nome, 10, 0, 1, 10, 0, 0, 1, 1);
         Jogador jogador = new Jogador(jogadorStatus);
         return jogador;
     }
 
     public static void statusDoJogador(Jogador jogador){
+        System.out.println("\n============"+ jogador.status.nome +"============");
         System.out.println("Vida: ["+ jogador.status.vida +"/"+ jogador.status.vidaMax +"]");
         System.out.println("Mana: ["+ jogador.status.mana +"/"+ jogador.status.manaMax +"]");
         System.out.println("Moedas: "+ jogador.status.moedas);
         System.out.println("Nível: "+ jogador.status.nivel);
         System.out.println("Experiência: "+ jogador.status.exp +"/"+ jogador.status.proxnivel);
         System.out.println("Ataque: "+ jogador.status.Ndados +"d"+ jogador.status.dadoAtaque);
+        System.out.println("Defesa: "+ jogador.status.defesa);
+        System.out.println("====================================\n");
     }
 
     public void atacar(Monstro monstro) {
@@ -62,8 +65,8 @@ public class Jogador extends Status {
             jogador.status.vida += 5;
             jogador.status.manaMax += 5;
             jogador.status.mana += 5;
-            jogador.status.dadoAtaque += 2;
-            jogador.status.defesa += 1;
+            jogador.status.dadoAtaque += 4;
+            jogador.status.defesa += 2;
             jogador.status.exp = 0;
             if (jogador.status.nivel % 2 != 0){
                 jogador.status.Ndados += 1;

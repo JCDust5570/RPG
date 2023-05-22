@@ -11,7 +11,7 @@ public class Monstro {
 
     public static Monstro createSlime() {
         int moedas = new Random().nextInt(6);
-        Status slimeStatus = Status.createStatus("Slime", 10, 0, 1, 5, 0, moedas, 1, 1);
+        Status slimeStatus = Status.createStatus("Slime", 6, 0, 1, 5, 0, moedas, 1, 1);
         Monstro slimeMonstro = new Monstro(slimeStatus);
         return slimeMonstro;
     }
@@ -43,9 +43,11 @@ public class Monstro {
     }
 
     public void statusDoMonstro(Monstro monstro){
+        System.out.println("\n============"+ monstro.status.nome +"============");
         System.out.println("Vida: ["+ monstro.status.vida +"/"+ monstro.status.vidaMax +"]");
         System.out.println("Ataque: "+ monstro.status.Ndados +"d"+ monstro.status.dadoAtaque);
         System.out.println("Defesa: "+ monstro.status.defesa);
+        System.out.println("====================================\n");
     }
 
     
