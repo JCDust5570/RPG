@@ -12,7 +12,7 @@ public class Status {
     int defesa;
     int moedas;
     int nivel = 0;
-    int xp = 0;
+    int exp = 0;
     int proxnivel = 10;
     boolean vivo = true;
     boolean critico = false;
@@ -29,7 +29,7 @@ public class Status {
         status.defesa = defesa;
         status.moedas = moedas;
         status.nivel = nivel;
-        status.xp = xp;
+        status.exp = xp;
         status.vivo = true;
         status.critico = false;
         return status;
