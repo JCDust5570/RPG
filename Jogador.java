@@ -20,7 +20,7 @@ public class Jogador extends Status {
 
     public static Jogador createJogador() {
         String nome = Nome();
-        Status jogadorStatus = Status.createStatus(nome, 10, 0, 1, 5, 0, 0, 1, 1);
+        Status jogadorStatus = Status.createStatus(nome, 10, 0, 1, 40, 0, 0, 1, 1);
         Jogador jogador = new Jogador(jogadorStatus);
         return jogador;
     }
@@ -52,6 +52,26 @@ public class Jogador extends Status {
             System.out.println("Você atacou o monstro, mas não acertou!");
         }
         
+    }
+
+    public void evoluir(Jogador jogador){
+        if(jogador.status.exp >= jogador.status.proxnivel){
+            jogador.status.nivel += 1;
+            jogador.status.proxnivel += 10;
+            jogador.status.vidaMax += 5;
+            jogador.status.vida += 5;
+            jogador.status.manaMax += 5;
+            jogador.status.mana += 5;
+            jogador.status.dadoAtaque += 2;
+            jogador.status.defesa += 1;
+            jogador.status.exp = 0;
+            if (jogador.status.nivel % 2 != 0){
+                jogador.status.Ndados += 1;
+            }
+            System.out.println("Você evoluiu para o nível " + jogador.status.nivel + "!");
+            System.out.println("Seus status aumentaram!");
+            statusDoJogador(jogador);
+        }
     }
 }
 

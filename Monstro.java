@@ -42,5 +42,13 @@ public class Monstro {
         }
     }
 
+    public void statusDoMonstro(Monstro monstro){
+        System.out.println("Vida: ["+ monstro.status.vida +"/"+ monstro.status.vidaMax +"]");
+        System.out.println("Ataque: "+ monstro.status.Ndados +"d"+ monstro.status.dadoAtaque);
+        System.out.println("Defesa: "+ monstro.status.defesa);
+    }
+
+    
+
 }
 
