@@ -4,6 +4,15 @@
     Osteon poder atacar com a arma ou com a magia(Raio Sombrio)
 }
 
+1.2 -> Montros{
+    Adicionar mais monstros (com ataques diferentes ou magias) para o jogador enfrentar
+}
+
+1.3 -> Jogador{
+    caso não adicionar classe, quando o jogador evoluir
+    de nuível, deixar ele aprender um ataque novo
+}
+
 2 -> Loja{
     Adicionar uma Loja Misteriosa
 }
@@ -14,12 +23,24 @@
 
 4 -> Menu{
     Adicionar uma Classe Menu e transportar o menu para la;
+    adicionar um Bestiário para o Menu
 }
 
 5 -> Magias e ataques{
     Adicionar magias e ataques para o Jogador
 }
 
-Bônus -> Classes{
-    Adicionar classes para o Jogador (se der tempo)
+6 -> GameOver{
+    Mostrar quantas criaturas ele matou e
+    pontuar o jogador;
 }
+
+Bônus -> Se Der Tempo{
+    Adicionar classes para o Jogador (Mago, Guerreiro, Clérigo e Bardo)
+    Adicionar um sistema de itens(como armaduras e espadas) para o Jogador 
+    Adicionar um sistema de poções para o Jogador
+    Adicionar um Banco de Dados que mostre a pontuação dos ultimos jogadores 
+
+}Se Não, Só no Python;
+
+
