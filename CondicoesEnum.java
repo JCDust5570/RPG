@@ -1,3 +1,5 @@
+
+
 public enum CondicoesEnum {
     
     NORMAL(0),
@@ -43,13 +45,17 @@ public enum CondicoesEnum {
                 Criatura.condicao = NORMAL;
                 break;
             case FRAQUEZA:
-                Criatura.condicao = FRAQUEZA;
-                Criatura.defesa = Criatura.defesa / 2;
-                Criatura.dadoAtaque = Criatura.dadoAtaque / 2;
+                if(Criatura.timer == 0){    
+                    Criatura.condicao = FRAQUEZA;
+                    Criatura.defesa = Criatura.defesa / 2;
+                    Criatura.dadoAtaque = Criatura.dadoAtaque / 2;
+                }
                 Criatura.timer += 1;
                 break;
             case DORMINDO:
-                Criatura.condicao = DORMINDO;
+                if(Criatura.timer == 0){
+                    Criatura.condicao = DORMINDO;
+                }
                 Criatura.timer += 1;
                 break;
             case ENVENENADO:

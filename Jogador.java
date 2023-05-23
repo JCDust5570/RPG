@@ -20,10 +20,12 @@ public class Jogador extends Status {
 
     public static Jogador createJogador() {
         String nome = Nome();
-        Status jogadorStatus = Status.createStatus(nome, 10, 0, 1, 10, 0, 0, 1, 1);
+        Status jogadorStatus = Status.createStatus(nome, 15, 20, 1, 10, 0, 0, 1, 1);
         Jogador jogador = new Jogador(jogadorStatus);
         jogador.status.regeneraracaoMana = 1;
         jogador.status.regeneraracaoVida = 5;
+        jogador.status.iniciativa = 5;
+        jogador.status.player = true;
         return jogador;
     }
 
@@ -36,6 +38,8 @@ public class Jogador extends Status {
         System.out.println("Experiência: "+ jogador.status.exp +"/"+ jogador.status.proxnivel);
         System.out.println("Ataque: "+ jogador.status.Ndados +"d"+ jogador.status.dadoAtaque);
         System.out.println("Defesa: "+ jogador.status.defesa);
+        System.out.println("Condicao: "+ jogador.status.condicao);
+        System.out.println("Inicioativa: "+ jogador.status.iniciativa);
         System.out.println("====================================\n");
     }
 
@@ -74,6 +78,9 @@ public class Jogador extends Status {
             jogador.status.exp = 0;
             if (jogador.status.nivel % 2 != 0){
                 jogador.status.Ndados += 1;
+                jogador.status.iniciativa += 2;
+                jogador.status.regeneraracaoMana += 2;
+                jogador.status.regeneraracaoVida += 2;
             }
             System.out.println("Você evoluiu para o nível " + jogador.status.nivel + "!");
             System.out.println("Seus status aumentaram!");
@@ -82,10 +89,15 @@ public class Jogador extends Status {
     }
 
     public static void curar(Jogador jogador){
-        jogador.status.mana -= 4;
-        jogador.status.vida += 5;
-        if(jogador.status.vida > jogador.status.vidaMax){
-            jogador.status.vida = jogador.status.vidaMax;
+        if(jogador.status.mana > 3){
+            jogador.status.mana -= 4;
+            jogador.status.vida += 5;
+            if(jogador.status.vida > jogador.status.vidaMax){
+                jogador.status.vida = jogador.status.vidaMax;
+            }
+            System.out.println("Você gatou 4 de mana e curou em 5 pontos da sua vida!");
+        }else{
+            System.out.println("Você não tem mana suficiente!");
         }
        
     }

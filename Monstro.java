@@ -37,8 +37,8 @@ public class Monstro {
         Random random = new Random();
         int dano = 0;
         // Calculo o dano baseado em dado de lados iguais ao atributo dadoAtaque
-        for(int i = 0; i < this.status.Ndados; i++){
-            dano += random.nextInt(this.status.dadoAtaque);
+        for(int i = 0; i < monstro.status.Ndados; i++){
+            dano += random.nextInt(monstro.status.dadoAtaque);
         }
         if(dano > jogador.status.defesa){
             jogador.status.vida -= dano;
@@ -87,19 +87,51 @@ public class Monstro {
 
     public void raioSombrio(Jogador jogador, Monstro monstro){
         Random random = new Random(10);
-        // Calculo o dano baseado em dado de lados iguais ao atributo dadoAtaque
         monstro.status.mana -= 5;
         jogador.status.vida -= 4;
 
         if(random.nextInt(10) > 7){
             jogador.status.condicao = CondicoesEnum.FRAQUEZA;
+            System.out.println("O Raio Sombrio te deixou fraco!");
+            System.out.println("Sua defesa e seu ataque foram reduzidos pela metade!");
+        }
+    }
+    
+    public void toqueVampirico(Jogador jogador, Monstro monstro) {
+        monstro.status.mana -= 5;
+        Random random = new Random();
+        int dano = 0;
+        // Calculo o dano baseado em dado de lados iguais ao atributo dadoAtaque
+        for(int i = 0; i < monstro.status.Ndados; i++){
+            dano += random.nextInt(monstro.status.dadoAtaque);
+        }
+        if(dano > jogador.status.defesa){
+            jogador.status.vida -= dano;
+            monstro.status.vida += dano + monstro.status.regeneraracaoVida;
+            System.out.println("O monstro te atacou e causou " + dano + " de dano!");
+            System.out.println("O monstro se curou em " + (dano + monstro.status.regeneraracaoVida) + " de vida!");
+            if(jogador.status.vida <= 0){
+                System.out.println("Você morreu!");
+                jogador.status.vivo = false;
+            }
+        }else{
+            System.out.println("O "+ monstro.status.nome +"te atacou, mas não acertou!");
+        }    
+    }
+
+    public void osteonAtaque(Monstro monstro, Jogador jogador){
+        if(monstro.status.mana > 5){
+            if(monstro.status.vida > 15){
+                raioSombrio(jogador, monstro);
+            }
+            else{
+                toqueVampirico(jogador, monstro);
+            }
+        }else{
+            atacar(jogador, monstro);
         }
 
 
-
-
     }
-    
-
 }
 

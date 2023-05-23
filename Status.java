@@ -20,6 +20,7 @@ public class Status {
     int timer = 0;
     boolean vivo = true;
     boolean critico = false;
+    boolean player = false;
     CondicoesEnum condicao = CondicoesEnum.NORMAL;
     
     public static Status createStatus(String nome, int vida, int mana, int Ndado, int dadoAtaque, int defesa, int moedas, int nivel, int xp) {
