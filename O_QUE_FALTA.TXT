@@ -1,0 +1,25 @@
+1 -> Menu.Atacar{
+    definir quem ataca primeiro pela iniciativa (+ sorte)
+
+    Osteon poder atacar com a arma ou com a magia(Raio Sombrio)
+}
+
+2 -> Loja{
+    Adicionar uma Loja Misteriosa
+}
+
+3 -> Menu.Mochila{
+    Adicionar uma mochila
+}
+
+4 -> Menu{
+    Adicionar uma Classe Menu e transportar o menu para la;
+}
+
+5 -> Magias e ataques{
+    Adicionar magias e ataques para o Jogador
+}
+
+Bônus -> Classes{
+    Adicionar classes para o Jogador (se der tempo)
+}

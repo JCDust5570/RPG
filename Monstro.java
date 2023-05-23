@@ -12,18 +12,28 @@ public class Monstro {
     public static Monstro createSlime() {
         int moedas = new Random().nextInt(6);
         Status slimeStatus = Status.createStatus("Slime", 6, 0, 1, 5, 0, moedas, 1, 1);
+        slimeStatus.regeneraracaoVida = 1;
         Monstro slimeMonstro = new Monstro(slimeStatus);
         return slimeMonstro;
     }
 
     public static Monstro createGoblin(){
         int moedas = new Random().nextInt(6);
-        Status goblinStatus = Status.createStatus("Goblin", 15, 0, 1, 7, 4, moedas, 2, 4);
+        Status goblinStatus = Status.createStatus("Goblin", 15, 0, 1, 6, 5, moedas, 2, 4);
         Monstro goblinMonstro = new Monstro(goblinStatus);
         return goblinMonstro;
     }
 
-    public void atacar(Jogador jogador){
+    public static Monstro createOsteon(){
+        int moedas = new Random().nextInt(2);
+        Status osteonStatus = Status.createStatus("Osteon", 22, 15, 1, 7, 4, moedas, 3, 6);
+        osteonStatus.regeneraracaoVida = 2;
+        osteonStatus.regeneraracaoMana = 1;
+        Monstro osteonMonstro = new Monstro(osteonStatus);
+        return osteonMonstro;
+    }
+
+    public void atacar(Jogador jogador, Monstro monstro){
         Random random = new Random();
         int dano = 0;
         // Calculo o dano baseado em dado de lados iguais ao atributo dadoAtaque
@@ -38,11 +48,20 @@ public class Monstro {
                 jogador.status.vivo = false;
             }
         }else{
-            System.out.println("O "+ this.status.nome +"te atacou, mas não acertou!");
+            System.out.println("O "+ monstro.status.nome +"te atacou, mas não acertou!");
         }
+        
+        if(monstro.status.regeneraracaoVida > 0){
+            monstro.regenerarVida(monstro);
+        }
+        
+        if(monstro.status.regeneraracaoMana > 0){
+            monstro.regenerarMana(monstro);
+        }
+
     }
 
-    public void statusDoMonstro(Monstro monstro){
+    public static void statusDoMonstro(Monstro monstro){
         System.out.println("\n============"+ monstro.status.nome +"============");
         System.out.println("Vida: ["+ monstro.status.vida +"/"+ monstro.status.vidaMax +"]");
         System.out.println("Ataque: "+ monstro.status.Ndados +"d"+ monstro.status.dadoAtaque);
@@ -50,6 +69,36 @@ public class Monstro {
         System.out.println("====================================\n");
     }
 
+    public void regenerarVida(Monstro monstro){
+        monstro.status.vida += monstro.status.regeneraracaoVida;
+        if(monstro.status.vida > monstro.status.vidaMax){
+            monstro.status.vida = monstro.status.vidaMax;
+        }
+
+    }
+    
+    public void regenerarMana(Monstro monstro){
+        monstro.status.mana += monstro.status.regeneraracaoMana;
+        if(monstro.status.mana > monstro.status.manaMax){
+            monstro.status.mana = monstro.status.manaMax;
+        }
+    }
+
+
+    public void raioSombrio(Jogador jogador, Monstro monstro){
+        Random random = new Random(10);
+        // Calculo o dano baseado em dado de lados iguais ao atributo dadoAtaque
+        monstro.status.mana -= 5;
+        jogador.status.vida -= 4;
+
+        if(random.nextInt(10) > 7){
+            jogador.status.condicao = CondicoesEnum.FRAQUEZA;
+        }
+
+
+
+
+    }
     
 
 }

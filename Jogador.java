@@ -22,6 +22,8 @@ public class Jogador extends Status {
         String nome = Nome();
         Status jogadorStatus = Status.createStatus(nome, 10, 0, 1, 10, 0, 0, 1, 1);
         Jogador jogador = new Jogador(jogadorStatus);
+        jogador.status.regeneraracaoMana = 1;
+        jogador.status.regeneraracaoVida = 5;
         return jogador;
     }
 
@@ -54,6 +56,8 @@ public class Jogador extends Status {
         }else{
             System.out.println("Você atacou o monstro, mas não acertou!");
         }
+
+        regenerarMana(this);
         
     }
 
@@ -74,6 +78,29 @@ public class Jogador extends Status {
             System.out.println("Você evoluiu para o nível " + jogador.status.nivel + "!");
             System.out.println("Seus status aumentaram!");
             statusDoJogador(jogador);
+        }
+    }
+
+    public static void curar(Jogador jogador){
+        jogador.status.mana -= 4;
+        jogador.status.vida += 5;
+        if(jogador.status.vida > jogador.status.vidaMax){
+            jogador.status.vida = jogador.status.vidaMax;
+        }
+       
+    }
+
+    public void regenerarMana(Jogador jogador){
+        jogador.status.mana += jogador.status.regeneraracaoMana;
+        if(jogador.status.mana > jogador.status.manaMax){
+            jogador.status.mana = jogador.status.manaMax;
+        }
+    }
+
+    public void regenerarVida(Jogador jogador){
+        jogador.status.vida += jogador.status.regeneraracaoVida;
+        if(jogador.status.vida > jogador.status.vidaMax){
+            jogador.status.vida = jogador.status.vidaMax;
         }
     }
 }

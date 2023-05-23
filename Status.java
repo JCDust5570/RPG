@@ -14,8 +14,13 @@ public class Status {
     int nivel = 0;
     int exp = 0;
     int proxnivel = 10;
+    int regeneraracaoVida = 0;
+    int regeneraracaoMana = 0;
+    int iniciativa = 0;
+    int timer = 0;
     boolean vivo = true;
     boolean critico = false;
+    CondicoesEnum condicao = CondicoesEnum.NORMAL;
     
     public static Status createStatus(String nome, int vida, int mana, int Ndado, int dadoAtaque, int defesa, int moedas, int nivel, int xp) {
         Status status = new Status();

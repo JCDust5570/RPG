@@ -44,19 +44,18 @@ class Main{
         int escolha = input.nextInt();
         switch(escolha){
             case 1:
-                jogador.atacar(monstro);
-                if(monstro.status.vivo){
-                    monstro.atacar(jogador);
-                }
                 break;
             case 2:
-                System.out.println("Você curou 5 pontos de vida");
-                jogador.status.vida += 5;
-                if(jogador.status.vida > jogador.status.vidaMax){
-                    jogador.status.vida = jogador.status.vidaMax;
+                if(jogador.status.mana > 3){
+                    jogador.curar(jogador);
+                }else{
+                    System.out.println("Você não tem mana suficiente!");
                 }
+                break;
             case 3:
                 Jogador.statusDoJogador(jogador);
+                System.out.print("\n");
+                Monstro.statusDoMonstro(monstro);
                 break;
             default:
                 System.out.println("Opção inválida!");
@@ -80,6 +79,9 @@ class Main{
             case 2:
                 Monstro monstro2 = Monstro.createGoblin();
                 return monstro2;
+            case 3:
+                Monstro monstro4 = Monstro.createOsteon();
+                return monstro4;
             default:
                 Monstro monstro3 = Monstro.createSlime();
                 return monstro3;
