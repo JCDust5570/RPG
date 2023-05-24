@@ -120,18 +120,21 @@ public class Monstro {
     }
 
     public void osteonAtaque(Monstro monstro, Jogador jogador){
-        if(monstro.status.mana > 5){
+        if(monstro.status.mana > 10){
             if(monstro.status.vida > 15){
                 raioSombrio(jogador, monstro);
             }
             else{
                 toqueVampirico(jogador, monstro);
             }
-        }else{
-            atacar(jogador, monstro);
+        }else if(monstro.status.mana > 5){
+            if(monstro.status.vida > 15){
+                monstro.atacar(jogador, monstro);
+            }
+            else{
+                toqueVampirico(jogador, monstro);
+            }
         }
-
-
     }
 }
 
